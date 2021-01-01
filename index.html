@@ -417,7 +417,7 @@
             window.applicationCache.addEventListener("progress", CacheInstallingEvent, false);
             window.applicationCache.oncached = function (e) { setTimeout(CacheInstalledEvent, 500); };
 
-            window.onload = function (e) { setTimeout(CacheLoadedEvent, 300); };
+            window.onload = function (e) { setTimeout(CacheLoadedEvent, 10000); };
         }
 
         main();

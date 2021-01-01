@@ -1,0 +1,426 @@
+<html manifest="cache.manifest">
+<head>
+    <title>PS4 Host Menu 6.72</title>
+    <style>
+        button {
+            margin-bottom: 5px;
+        }
+    </style>
+    <!--
+        From the scripts below the ones that need editting are:
+        jailbreak/common/malloc.js, jailbreak/common/rop.js, jailbreak/common/syscalls.js, jailbreak/common/syscalls2.js
+        , jailbreak/c-code.js
+        , loaders/BL.js (bin loader), loaders/JB.js (jailbreak), loaders/JC.js (jailbreak common), loaders/PL.js (payload), loaders/WE.js (webkit exploit)
+        , mira/c-code.js, mira/mira.js
+        , payloads/FanThreshold.js, payloads/FWSpoofer.js
+        , webkit_exploit/webex.js (webkit exploit)
+    -->
+
+    <script src="jailbreak/common/helpers.js"></script>
+    <script src="jailbreak/common/malloc.js"></script>
+    <script src="jailbreak/common/rop.js"></script>
+    <script src="jailbreak/common/syscalls.js"></script>
+    <script src="jailbreak/common/syscalls2.js"></script>
+    <script src="jailbreak/c-code.js"></script>
+    <script src="loaders/BL.js"></script>
+    <script src="loaders/JB.js"></script>
+    <script src="loaders/JC.js"></script>
+    <script src="loaders/PL.js"></script>
+    <script src="loaders/WE.js"></script>
+    <script src="mira/c-code.js"></script>
+    <script src="mira/mira.js"></script>
+    <script src="payloads/FanThreshold.js"></script>
+    <script src="payloads/FWSpoofer.js"></script>
+    <script src="webkit_exploit/webex.js"></script>
+</head>
+<body style="background-color:#3462a8;color:white;font-size:20px;text-align:center;">
+    <h1 id=header style='font-size:26px;margin:0;'>PS4 Host Menu 6.72</h1>
+    <hr>
+    <h1 id=Status style='font-size:22px;margin:0;'>Status</h1>
+    <hr>
+    <div id=Sections style="text-align:center">
+        <div id=Sections_Exploit>
+            <h1 style='font-size:16px;margin-bottom:1px;'>Exploit</h1>
+            <button id=Sections_Exploit_HEN onclick=LoadHEN()> HEN </button>
+            <button id=Sections_Exploit_Mira onclick=LoadMira()> Mira </button>
+            <button id=Sections_Exploit_MiraUnofficial onclick=LoadMiraUnofficial()> Mira (Unofficial) </button>
+        </div>
+        <div id=Sections_Tools>
+            <h1 style='font-size:16px;margin-bottom:1px;margin-top:30px;'>Tools</h1>
+            <button id=Sections_Tools_BinLoader onclick=LoadBinLoader()> Bin Loader </button>
+            <button id=Sections_Tools_FTP onclick=LoadFTP()> FTP </button>
+            <button id=Sections_Tools_App2USB onclick=LoadApp2USB()> App2USB </button>
+            <button id=Sections_Tools_Debug onclick=LoadDebug()> Debug </button>
+            <button id=Sections_Tools_WebRTE onclick=LoadWebRTE()> WebRTE </button>
+            <button id=Sections_Tools_Linux onclick=LoadLinux()> Linux </button>
+            <button id=Sections_Tools_KernelDumper onclick=LoadKernelDumper()> Kernel Dumper </button>
+            <button id=Sections_Tools_ToDEX onclick=LoadToDEX()> ToDEX </button>
+            <button id=Sections_Tools_FWSpoofer onclick=LoadFWSpoofer()> Firmware Spoofer </button>
+        </div>
+        <div id=Sections_GameDumper>
+            <h1 style='font-size:16px;margin-bottom:1px;'>Game Dumper</h1>
+            <button id=Sections_GameDumper_GUMDumper onclick=LoadGUMDumper()> Game + Update Merged Dumper </button>
+            <button id=Sections_GameDumper_GUDumper onclick=LoadGUDumper()> Game + Update Dumper </button>
+            <button id=Sections_GameDumper_GDumper onclick=LoadGDumper()> Game Dumper </button>
+            <button id=Sections_GameDumper_UDumper onclick=LoadUDumper()> Update Dumper </button>
+        </div>
+        <div id=Sections_Recovery>
+            <h1 style='font-size:16px;margin-bottom:1px;'>Recovery</h1>
+            <button id=Sections_Recovery_DBBackup onclick=LoadDBBackup()> Database Backup </button>
+            <button id=Sections_Recovery_DBRestore onclick=LoadDBRestore()> Database Restore </button>
+            <br />
+            <button id=Sections_Recovery_AvatarBackup onclick=LoadAvatarBackup()> Avatar Backup </button>
+            <button id=Sections_Recovery_AvatarRestore onclick=LoadAvatarRestore()> Avatar Restore </button>
+        </div>
+        <div id=Sections_Settings>
+            <h1 style='font-size:16px;margin-bottom:1px;margin-top:30px;'>Settings</h1>
+            <button id=Sections_Settings_UpdatesDisabler onclick=LoadUpdatesDisabler()> Updates Disabler </button>
+            <button id=Sections_Settings_UpdatesEnabler onclick=LoadUpdatesEnabler()> Updates Enabler </button>
+            <br />
+            <button id=Sections_Settings_HistoryBlocker onclick=LoadHistoryBlocker()> History Blocker </button>
+            <br />
+            <button id=Sections_Settings_FanThreshold onclick=LoadFanThreshold()> Set Fan Threshold </button><select id="FanTempSelector"></select>&#176;C
+        </div>
+        <div id=Sections_Credits style=" position:fixed; left:0; bottom:-8px; width:100%; font-size:16px;">
+            <hr>By mtnjustme, based on Leeful's v10<hr>
+        </div>
+    </div>
+    <script>
+        // Here I'll declare all of the global variables i will use regarding the host
+
+        var LoadedWebkitExploit;
+        var LoadedJailbreakCommon;
+        var LoadedJailbreak;
+
+        var SectionsLocked;
+        var SectionsElements;
+        var SectionsElementsLength;
+        var SectionsElementsIndex;
+
+        var CachePercent;
+        var CacheInstalling;
+        var CacheInstalled;
+        var CacheLoaded;
+
+        var FanTempMax;
+        var FanTempMin;
+        var FanTempSelectorOptions;
+        var FanTempSelectorOption;
+        var FanTempSelectorOptionIndex;
+
+        var PayloadName;
+        var PayloadPath;
+        var PayloadFunction;
+
+        var SuccessText;
+        var FailureText;
+        var LoadingText;
+
+        var FWA;
+        var FWB;
+
+        var FT;
+
+        var c_code_loaded;
+        var c_code_return_value;
+    </script>
+    <script>
+        // Everything regarding Sections
+
+        function SectionsLock() {
+            if (SectionsLocked == false) {
+                for (SectionsElementsIndex = 0; SectionsElementsIndex < SectionsElementsLength; SectionsElementsIndex++)
+                    if (SectionsElements[SectionsElementsIndex].disabled == false)
+                        SectionsElements[SectionsElementsIndex].disabled = true;
+
+                SectionsLocked = true;
+            }
+        }
+
+        function SectionsUnlock() {
+            if (SectionsLocked == true)
+                if (LoadedWebkitExploit == true)
+                    if (LoadedJailbreakCommon == true)
+                        if (LoadedJailbreak == true) {
+                            for (SectionsElementsIndex = 0; SectionsElementsIndex < SectionsElementsLength; SectionsElementsIndex++)
+                                if (SectionsElements[SectionsElementsIndex].disabled == true)
+                                    SectionsElements[SectionsElementsIndex].disabled = false;
+
+                            SectionsLocked = false;
+                        }
+                        else
+                            LoadJailbreak();
+                    else
+                        LoadJailbreakCommon();
+                else
+                    LoadWebkitExploit();
+        }
+    </script>
+    <script>
+        // Everything regarding Cache
+
+        function CacheInstallingEvent(e) {
+            if (CacheInstalling == false)
+                CacheInstalling = true;
+
+            CachePercent = Math.round(e.loaded / e.total * 100);
+
+            Status.innerHTML = "Installing Cache: " + CachePercent + "%";
+        }
+
+        function CacheInstalledEvent() {
+            if (CacheInstalling == true)
+                CacheInstalling = false;
+
+            CacheInstalled = true;
+
+            Status.innerHTML = "Cache Installed";
+
+            SectionsUnlock();
+        }
+
+        function CacheLoadedEvent() {
+            if (CacheInstalling == false && CacheInstalled == false)
+                if (window.applicationCache.status == 1) {
+                    CacheLoaded = true;
+
+                    Status.innerHTML = "Cache Loaded";
+
+                    SectionsUnlock();
+                }
+                else
+                    setTimeout(CacheLoadedEvent, 150);
+        }
+    </script>
+    <script>
+        // Everything regarding the FanTempSelector
+
+        function SetFanTempSelectorOptions() {
+            for (FanTempSelectorOptionIndex = FanTempMin; FanTempSelectorOptionIndex <= FanTempMax; FanTempSelectorOptionIndex++) {
+                FanTempSelectorOption = document.createElement("OPTION");
+                FanTempSelectorOption.text = FanTempSelectorOptionIndex;
+                FanTempSelectorOption.value = FanTempSelectorOptionIndex;
+
+                FanTempSelectorOptions.add(FanTempSelectorOption);
+            }
+        }
+    </script>
+    <script>
+        // Everything in regards to loading
+
+        function RunLoader(loader, delay) {
+            SectionsLock();
+
+            setTimeout(loader, delay)
+        }
+
+        function BLLA() { RunLoader(bl_loader, 150); }
+        function BLLB() { RunLoader(bl_loader, 500); }
+        function JBLA() { RunLoader(jb_loader, 150); }
+        function JBLB() { RunLoader(jb_loader, 500); }
+        function JCLA() { RunLoader(jc_loader, 150); }
+        function JCLB() { RunLoader(jc_loader, 500); }
+        function PLLA() { RunLoader(pl_loader, 150); }
+        function PLLB() { RunLoader(pl_loader, 500); }
+        function WELA() { RunLoader(we_loader, 150); }
+        function WELB() { RunLoader(we_loader, 500); }
+
+        function LoadWebkitExploit() {
+            WELA();
+        }
+
+        function LoadJailbreakCommon() {
+            JCLA();
+        }
+
+        function LoadJailbreak() {
+            JBLA();
+        }
+
+        function LoadHEN() {
+            PayloadName = "HEN";
+            PayloadPath = "payloads/HEN.bin";
+            PLLB();
+        }
+
+        function LoadMira() {
+            PayloadName = "Mira";
+            PayloadPath = "payloads/Mira.bin";
+            PLLB();
+        }
+
+        function LoadMiraUnofficial() {
+            PayloadName = "Mira (Unofficial)";
+            PayloadPath = "payloads/MiraUnofficial.bin";
+            PLLB();
+        }
+
+        function LoadBinLoader() {
+            //PayloadName = "Bin Loader"; using mira loader
+            //PayloadPath = "payloads/BinLoader.bin"; using mira loader
+            BLLB();
+        }
+
+        function LoadFTP() {
+            PayloadName = "FTP";
+            PayloadPath = "payloads/FTP.bin";
+            PLLA();
+        }
+
+        function LoadApp2USB() {
+            PayloadName = "App2USB";
+            PayloadPath = "payloads/App2USB.bin";
+            PLLA();
+        }
+
+        function LoadDebug() {
+            PayloadName = "Debug";
+            PayloadPath = "payloads/Debug.bin";
+            PLLA();
+        }
+
+        function LoadWebRTE() {
+            PayloadName = "WebRTE";
+            PayloadPath = "payloads/WebRTE.bin";
+            PLLA();
+        }
+
+        function LoadLinux() {
+            PayloadName = "Linux";
+            PayloadPath = "payloads/Linux.bin";
+            PLLA();
+        }
+
+        function LoadKernelDumper() {
+            PayloadName = "Kernel Dumper";
+            PayloadPath = "payloads/KernelDumper.bin";
+            PLLA();
+        }
+
+        function LoadToDEX() {
+            PayloadName = "ToDEX";
+            PayloadPath = "payloads/ToDEX.bin";
+            PLLA();
+        }
+
+        function LoadFWSpoofer() {//by Leeful (based on EnableVR for 5.05 by Stooged)
+            PayloadName = "Firmware Spoofer";
+            PayloadPath = "payloads/FWSpoofer.js";
+            PayloadFunction = fw_spoofer;
+            PLLB();
+        }
+
+        function LoadGUMDumper() {//by xVortex - 672 port and MOD by Leeful
+            PayloadName = "Game + Update Merged Dumper";
+            PayloadPath = "payloads/GUMDumper.bin";
+            PLLA();
+        }
+
+        function LoadGUDumper() {//by xVortex - 672 port and MOD by Leeful
+            PayloadName = "Game + Update Dumper";
+            PayloadPath = "payloads/GUDumper.bin";
+            PLLA();
+        }
+
+        function LoadGDumper() {//by xVortex - 672 port and MOD by Leeful
+            PayloadName = "Game Dumper";
+            PayloadPath = "payloads/GDumper.bin";
+            PLLA();
+        }
+
+        function LoadUDumper() {//by xVortex - 672 port and MOD by Leeful
+            PayloadName = "Update Dumper";
+            PayloadPath = "payloads/UDumper.bin";
+            PLLA();
+        }
+
+        function LoadDBBackup() {//by Stooged - 672 port and MOD by Leeful
+            PayloadName = "Database Backup";
+            PayloadPath = "payloads/DBBackup.bin";
+            PLLA();
+        }
+
+        function LoadDBRestore() {//by Stooged - 672 port and MOD by Leeful
+            PayloadName = "Database Restore";
+            PayloadPath = "payloads/DBRestore.bin";
+            PLLA();
+        }
+
+        function LoadAvatarBackup() {
+            PayloadName = "Avatar Backup";
+            PayloadPath = "payloads/AvatarBackup.bin";
+            PLLA();
+        }
+
+        function LoadAvatarRestore() {
+            PayloadName = "Avatar Restore";
+            PayloadPath = "payloads/AvatarRestore.bin";
+            PLLA();
+        }
+
+        function LoadUpdatesDisabler() {
+            PayloadName = "Updates Disabler";
+            PayloadPath = "payloads/UpdatesDisabler.bin";
+            PLLA();
+        }
+
+        function LoadUpdatesEnabler() {
+            PayloadName = "Updates Enabler";
+            PayloadPath = "payloads/UpdatesEnabler.bin";
+            PLLA();
+        }
+
+        function LoadHistoryBlocker() {
+            PayloadName = "History Blocker";
+            PayloadPath = "payloads/HistoryBlocker.bin";
+            PLLA();
+        }
+
+        function LoadFanThreshold() {//by Leeful
+            FT = FanTempSelector.value;
+
+            PayloadName = "Fan Threshold";
+            PayloadPath = "payloads/FanThreshold.bin";
+            PayloadFunction = fan_threshold;
+            PLLB();
+        }
+    </script>
+    <script>
+        // main
+
+        function main() {
+            LoadedWebkitExploit = false;
+            LoadedJailbreakCommon = false;
+            LoadedJailbreak = false;
+
+            SectionsLocked = false;
+            SectionsElements = Sections.getElementsByTagName('*');
+            SectionsElementsLength = SectionsElements.length;
+
+            CacheInstalling = false;
+            CacheInstalled = false;
+            CacheLoaded = false;
+
+            FanTempMax = 79;
+            FanTempMin = 40;
+            FanTempSelectorOptions = FanTempSelector.options;
+
+            FWA = 9;
+            FWB = 99;
+
+            SetFanTempSelectorOptions();
+
+            FanTempSelector.value = 79;
+
+            SectionsLock();
+
+            window.applicationCache.addEventListener("progress", CacheInstallingEvent, false);
+            window.applicationCache.oncached = function (e) { setTimeout(CacheInstalledEvent, 500); };
+
+            window.onload = function (e) { setTimeout(CacheLoadedEvent, 300); };
+        }
+
+        main();
+    </script>
+</body>
+</html>

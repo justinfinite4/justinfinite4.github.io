@@ -21,7 +21,7 @@ function we_loaded() {
 function we_loader() {
     LoadingText = "Loading Webkit Exploit ...";
 
-    Status.innerHTML = LoadingText;
+    window.Status.innerHTML = LoadingText;
 
     //webkit's exploit loader
     webex_loader();

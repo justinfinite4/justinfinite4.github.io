@@ -176,7 +176,7 @@
 
             Status.innerHTML = "Cache Installed";
 
-            setTimeout(function () { Status.innerHTML = "close";})
+            SectionsUnlock();
         }
 
         function CacheLoadedEvent() {
@@ -185,8 +185,6 @@
                     CacheLoaded = true;
 
                     Status.innerHTML = "Cache Loaded";
-
-                    SectionsUnlock();
                 }
                 else
                     setTimeout(CacheLoadedEvent, 150);

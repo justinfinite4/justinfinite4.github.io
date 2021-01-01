@@ -226,6 +226,8 @@
         function WELB() { RunLoader(we_loader, 500); }
 
         function LoadWebkitExploit() {
+
+            Status.innerHTML = "test";
             WELA();
         }
 
@@ -415,7 +417,7 @@
             SectionsLock();
 
             window.applicationCache.addEventListener("progress", CacheInstallingEvent, false);
-            window.applicationCache.oncached = function (e) { setTimeout(CacheInstalledEvent, 5000); };
+            window.applicationCache.oncached = function (e) { setTimeout(CacheInstalledEvent, 500); };
 
             window.onload = function (e) { setTimeout(CacheLoadedEvent, 300); };
         }

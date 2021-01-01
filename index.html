@@ -175,8 +175,6 @@
             CacheInstalled = true;
 
             Status.innerHTML = "Cache Installed";
-
-            SectionsUnlock();
         }
 
         function CacheLoadedEvent() {
@@ -415,9 +413,9 @@
             SectionsLock();
 
             window.applicationCache.addEventListener("progress", CacheInstallingEvent, false);
-            window.applicationCache.oncached = function (e) { setTimeout(CacheInstalledEvent, 500); };
+            window.applicationCache.oncached = function (e) { setTimeout(CacheInstalledEvent, 5000); };
 
-            window.onload = function (e) { setTimeout(CacheLoadedEvent, 10000); };
+            window.onload = function (e) { setTimeout(CacheLoadedEvent, 300); };
         }
 
         main();

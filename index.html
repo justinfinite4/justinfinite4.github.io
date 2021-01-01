@@ -6,6 +6,32 @@
             margin-bottom: 5px;
         }
     </style>
+    <!--
+        From the scripts below the ones that need editting are:
+        jailbreak/common/malloc.js, jailbreak/common/rop.js, jailbreak/common/syscalls.js, jailbreak/common/syscalls2.js
+        , jailbreak/c-code.js
+        , loaders/BL.js (bin loader), loaders/JB.js (jailbreak), loaders/JC.js (jailbreak common), loaders/PL.js (payload), loaders/WE.js (webkit exploit)
+        , mira/c-code.js, mira/mira.js
+        , payloads/FanThreshold.js, payloads/FWSpoofer.js
+        , webkit_exploit/webex.js (webkit exploit)
+    -->
+
+    <script src="webkit_exploit/webex.js"></script>
+    <script src="jailbreak/common/helpers.js"></script>
+    <script src="jailbreak/common/malloc.js"></script>
+    <script src="jailbreak/common/rop.js"></script>
+    <script src="jailbreak/common/syscalls.js"></script>
+    <script src="jailbreak/common/syscalls2.js"></script>
+    <script src="jailbreak/c-code.js"></script>
+    <script src="mira/c-code.js"></script>
+    <script src="mira/mira.js"></script>
+    <script src="loaders/BL.js"></script>
+    <script src="loaders/JB.js"></script>
+    <script src="loaders/JC.js"></script>
+    <script src="loaders/PL.js"></script>
+    <script src="loaders/WE.js"></script>
+    <script src="payloads/FanThreshold.js"></script>
+    <script src="payloads/FWSpoofer.js"></script>
 </head>
 <body style="background-color:#3462a8;color:white;font-size:20px;text-align:center;">
     <h1 id=header style='font-size:26px;margin:0;'>PS4 Host Menu 6.72</h1>
@@ -396,31 +422,5 @@
 
         main();
     </script>
-    <!--
-        From the scripts below the ones that need editting are:
-        jailbreak/common/malloc.js, jailbreak/common/rop.js, jailbreak/common/syscalls.js, jailbreak/common/syscalls2.js
-        , jailbreak/c-code.js
-        , loaders/BL.js (bin loader), loaders/JB.js (jailbreak), loaders/JC.js (jailbreak common), loaders/PL.js (payload), loaders/WE.js (webkit exploit)
-        , mira/c-code.js, mira/mira.js
-        , payloads/FanThreshold.js, payloads/FWSpoofer.js
-        , webkit_exploit/webex.js (webkit exploit)
-    -->
-
-    <script src="webkit_exploit/webex.js"></script>
-    <script src="jailbreak/common/helpers.js"></script>
-    <script src="jailbreak/common/malloc.js"></script>
-    <script src="jailbreak/common/rop.js"></script>
-    <script src="jailbreak/common/syscalls.js"></script>
-    <script src="jailbreak/common/syscalls2.js"></script>
-    <script src="jailbreak/c-code.js"></script>
-    <script src="mira/c-code.js"></script>
-    <script src="mira/mira.js"></script>
-    <script src="loaders/BL.js"></script>
-    <script src="loaders/JB.js"></script>
-    <script src="loaders/JC.js"></script>
-    <script src="loaders/PL.js"></script>
-    <script src="loaders/WE.js"></script>
-    <script src="payloads/FanThreshold.js"></script>
-    <script src="payloads/FWSpoofer.js"></script>
 </body>
 </html>

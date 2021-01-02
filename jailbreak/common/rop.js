@@ -1,4 +1,4 @@
-// Insert all the variables and the commands at top level into the "rop_loader" function
+// Insert all the variables and the commands at top level into the "jailbreak_rop_loader" function
 // change "var bak" to "bak" in the second appearance in the functions "saveall" and "pivot"
 
 // Global variables
@@ -81,7 +81,7 @@ function pivot(buf)
     write_mem(fake_vt_ptr, read_mem(fake_vt_ptr_bak, 0x400));
 }
 
-function rop_loader() {
+function jailbreak_rop_loader() {
     tarea = document.createElement('textarea');
 
     real_vt_ptr = read_ptr_at(addrof(tarea) + 0x18);

@@ -9,8 +9,8 @@
 // also change the last "var main_ret" to "c_code_return_value"
 // change ,); to );
 // change "var _" at the end to only have 1 declaration instead of 3
-// change "//.*\r\n" to nothing
 // change " //.*" to nothing
+// change "//.*\r\n" to nothing
 
 function mira_c_code() {
 var ropchain_array = new Uint32Array(55002);

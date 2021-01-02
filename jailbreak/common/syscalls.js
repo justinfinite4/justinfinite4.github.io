@@ -1,4 +1,4 @@
-// Insert all the variables and the commands at top level into the "syscalls_a_loader" function
+// Insert all the variables and the commands at top level into the "jailbreak_syscalls_a_loader" function
 
 // Global variables
 
@@ -310,7 +310,7 @@ var sys_392_addr;
 var sys_559_addr;
 var sys_133_addr;
 
-function syscalls_a_loader() {
+function jailbreak_syscalls_a_loader() {
     sys_670_addr = libkernel_base + 0x1efc0;
     sys_192_addr = libkernel_base + 0x1efe0;
     sys_586_addr = libkernel_base + 0x1f000;

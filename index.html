@@ -122,9 +122,6 @@
         var LoadedJailbreak;
 
         var SectionsLocked;
-        var SectionsElements;
-        var SectionsElementsLength;
-        var SectionsElementsIndex;
 
         var CachePercent;
         var CacheInstalling;
@@ -156,27 +153,47 @@
     <script>
         // Everything regarding Sections
 
-        function SectionsLock() {
-            if (SectionsLocked == false) {
-                for (SectionsElementsIndex = 0; SectionsElementsIndex < SectionsElementsLength; SectionsElementsIndex++)
-                    if (SectionsElements[SectionsElementsIndex].disabled == false)
-                        SectionsElements[SectionsElementsIndex].disabled = true;
+        function SectionsDisable(condition) {
+            SectionsExploitHEN.disabled = condition;
+            SectionsExploitMira.disabled = condition;
+            SectionsExploitMiraUnofficial.disabled = condition;
+            SectionsToolsBinLoader.disabled = condition;
+            SectionsToolsFTP.disabled = condition;
+            SectionsToolsApp2USB.disabled = condition;
+            SectionsToolsDebug.disabled = condition;
+            SectionsToolsWebRTE.disabled = condition;
+            SectionsToolsLinux.disabled = condition;
+            SectionsToolsKernelDumper.disabled = condition;
+            SectionsToolsToDEX.disabled = condition;
+            SectionsToolsFWSpoofer.disabled = condition;
+            SectionsGameDumperGUMDumper.disabled = condition;
+            SectionsGameDumperGUDumper.disabled = condition;
+            SectionsGameDumperGDumper.disabled = condition;
+            SectionsGameDumperUDumper.disabled = condition;
+            SectionsRecoveryDBBackup.disabled = condition;
+            SectionsRecoveryDBRestore.disabled = condition;
+            SectionsRecoveryAvatarBackup.disabled = condition;
+            SectionsRecoveryAvatarRestore.disabled = condition;
+            SectionsSettingsUpdatesDisabler.disabled = condition;
+            SectionsSettingsUpdatesEnabler.disabled = condition;
+            SectionsSettingsHistoryBlocker.disabled = condition;
+            SectionsSettingsFanThreshold.disabled = condition;
+            SectionsSettingsFanTempSelector.disabled = condition;
 
-                SectionsLocked = true;
-            }
+            SectionsLocked = condition;
+        }
+
+        function SectionsLock() {
+            if (SectionsLocked == false)
+                SectionsDisable(true);
         }
 
         function SectionsUnlock() {
             if (SectionsLocked == true)
                 if (LoadedWebkitExploit == true)
                     if (LoadedJailbreakCommon == true)
-                        if (LoadedJailbreak == true) {
-                            for (SectionsElementsIndex = 0; SectionsElementsIndex < SectionsElementsLength; SectionsElementsIndex++)
-                                if (SectionsElements[SectionsElementsIndex].disabled == true)
-                                    SectionsElements[SectionsElementsIndex].disabled = false;
-
-                            SectionsLocked = false;
-                        }
+                        if (LoadedJailbreak == true)
+                            SectionsDisable(false);
                         else
                             LoadJailbreak();
                     else
@@ -423,8 +440,6 @@
             LoadedJailbreak = false;
 
             SectionsLocked = false;
-            SectionsElements = Sections.getElementsByTagName('*');
-            SectionsElementsLength = SectionsElements.length;
 
             CacheInstalling = false;
             CacheInstalled = false;

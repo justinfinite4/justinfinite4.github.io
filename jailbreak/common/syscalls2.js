@@ -1,4 +1,4 @@
-// Insert all the variables and the commands at top level into the "syscalls_b_loader" function
+// Insert all the variables and the commands at top level into the "jailbreak_syscalls_b_loader" function
 
 // Global variables
 
@@ -310,7 +310,7 @@ var uuidgen_addr;
 var set_vm_container_addr;
 var sendto_addr;
 
-function syscalls_b_loader() {
+function jailbreak_syscalls_b_loader() {
     aio_init_addr = sys_670_addr;
     fpathconf_addr = sys_192_addr;
     dmem_container_addr = sys_586_addr;

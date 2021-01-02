@@ -1,4 +1,8 @@
+// Insert all the variables and the commands at top level into the "jailbreak_helpers_loader" function
 // change "(new Number(x))" to "Number(x)"
+// add the function "print(msg){}"
+
+function print(msg) { }
 
 function i48_put(x, a)
 {
@@ -93,3 +97,5 @@ function hex(x)
 {
     return Number(x).toString(16);
 }
+
+function jailbreak_helpers_loader() { }

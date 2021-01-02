@@ -23,17 +23,20 @@ function jc_loader() {
 
     Status.innerHTML = LoadingText;
 
-    //malloc loader
-    malloc_loader();
+    //jailbreak helpers loader
+    jailbreak_helpers_loader();
 
-    //rop loader
-    rop_loader();
+    //jailbreak malloc loader
+    jailbreak_malloc_loader();
 
-    //syscalls loader
-    syscalls_a_loader();
+    //jailbreak rop loader
+    jailbreak_rop_loader();
 
-    //syscalls2 loader
-    syscalls_b_loader();
+    //jailbreak syscalls loader
+    jailbreak_syscalls_a_loader();
+
+    //jailbreak syscalls2 loader
+    jailbreak_syscalls_b_loader();
 
     setTimeout(jc_loaded, 150);
 }

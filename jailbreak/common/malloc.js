@@ -1,4 +1,4 @@
-// Insert all the variables and the commands at top level into the "malloc_loader" function
+// Insert all the variables and the commands at top level into the "jailbreak_malloc_loader" function
 
 // Global variables
 
@@ -11,6 +11,6 @@ function malloc(sz)
     return read_ptr_at(addrof(arr)+0x10);
 }
 
-function malloc_loader() {
+function jailbreak_malloc_loader() {
     malloc_nogc = [];
 }

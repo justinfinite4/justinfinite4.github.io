@@ -2,61 +2,116 @@
 <head>
     <title>PS4 Host Menu 6.72</title>
     <style>
+        div {
+            text-align: center
+        }
+        hr {
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+        br {
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
         button {
-            margin-bottom: 5px;
+            font-size: 14px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            margin-right: 1px;
+            margin-left: 1px;
+            height: 23px;
+        }
+        select {
+            font-size: 14px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            margin-right: 1px;
+            margin-left: 1px;
+            height: 23px;
+        }
+        sup {
+            font-size: 10px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            margin-right: 1px;
+            margin-left: 1px;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 22px;
+            margin-top: 9px;
+            margin-bottom: 9px;
+        }
+        h3 {
+            font-size: 18px;
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+        h4 {
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 7px;
         }
     </style>
 </head>
 <body style="background-color:#3462a8;color:white;font-size:20px;text-align:center;">
-    <h1 id=header style='font-size:26px;margin:0;'>PS4 Host Menu 6.72</h1>
+    <h1 id="Header">PS4 Host Menu 6.72</h1>
     <hr>
-    <h1 id=Status style='font-size:22px;margin:0;'>Status</h1>
+    <h2 id="Status">Status</h2>
     <hr>
-    <div id=Sections style="text-align:center">
-        <div id=Sections_Exploit>
-            <h1 style='font-size:16px;margin-bottom:1px;'>Exploit</h1>
-            <button id=Sections_Exploit_HEN onclick=LoadHEN()> HEN </button>
-            <button id=Sections_Exploit_Mira onclick=LoadMira()> Mira </button>
-            <button id=Sections_Exploit_MiraUnofficial onclick=LoadMiraUnofficial()> Mira (Unofficial) </button>
+    <div id="Sections">
+        <div id="SectionsExploit">
+            <h3 id="SectionsExploitHeader">Exploit</h3>
+            <button id="SectionsExploitHEN" onclick="LoadHEN()"> HEN </button>
+            <button id="SectionsExploitMira" onclick="LoadMira()"> Mira </button>
+            <button id="SectionsExploitMiraUnofficial" onclick="LoadMiraUnofficial()"> Mira (Unofficial) </button>
         </div>
-        <div id=Sections_Tools>
-            <h1 style='font-size:16px;margin-bottom:1px;margin-top:30px;'>Tools</h1>
-            <button id=Sections_Tools_BinLoader onclick=LoadBinLoader()> Bin Loader </button>
-            <button id=Sections_Tools_FTP onclick=LoadFTP()> FTP </button>
-            <button id=Sections_Tools_App2USB onclick=LoadApp2USB()> App2USB </button>
-            <button id=Sections_Tools_Debug onclick=LoadDebug()> Debug </button>
-            <button id=Sections_Tools_WebRTE onclick=LoadWebRTE()> WebRTE </button>
-            <button id=Sections_Tools_Linux onclick=LoadLinux()> Linux </button>
-            <button id=Sections_Tools_KernelDumper onclick=LoadKernelDumper()> Kernel Dumper </button>
-            <button id=Sections_Tools_ToDEX onclick=LoadToDEX()> ToDEX </button>
-            <button id=Sections_Tools_FWSpoofer onclick=LoadFWSpoofer()> Firmware Spoofer </button>
+        <div id="SectionsTools">
+            <h4 id="SectionsToolsHeader">Tools</h4>
+            <button id="SectionsToolsBinLoader" onclick="LoadBinLoader()"> Bin Loader </button>
+            <button id="SectionsToolsFTP" onclick="LoadFTP()"> FTP </button>
+            <button id="SectionsToolsApp2USB" onclick="LoadApp2USB()"> App2USB </button>
+            <button id="SectionsToolsDebug" onclick="LoadDebug()"> Debug </button>
+            <button id="SectionsToolsWebRTE" onclick="LoadWebRTE()"> WebRTE </button>
+            <button id="SectionsToolsLinux" onclick="LoadLinux()"> Linux </button>
+            <button id="SectionsToolsKernelDumper" onclick="LoadKernelDumper()"> Kernel Dumper </button>
+            <button id="SectionsToolsToDEX" onclick="LoadToDEX()"> ToDEX </button>
+            <button id="SectionsToolsFWSpoofer" onclick="LoadFWSpoofer()"> Firmware Spoofer </button>
         </div>
-        <div id=Sections_GameDumper>
-            <h1 style='font-size:16px;margin-bottom:1px;'>Game Dumper</h1>
-            <button id=Sections_GameDumper_GUMDumper onclick=LoadGUMDumper()> Game + Update Merged Dumper </button>
-            <button id=Sections_GameDumper_GUDumper onclick=LoadGUDumper()> Game + Update Dumper </button>
-            <button id=Sections_GameDumper_GDumper onclick=LoadGDumper()> Game Dumper </button>
-            <button id=Sections_GameDumper_UDumper onclick=LoadUDumper()> Update Dumper </button>
+        <div id="SectionsGameDumper">
+            <h3 id="SectionsGameDumperHeader">Game Dumper</h3>
+            <button id="SectionsGameDumperGUMDumper" onclick="LoadGUMDumper()"> Game + Update Merged Dumper </button>
+            <button id="SectionsGameDumperGUDumper" onclick="LoadGUDumper()"> Game + Update Dumper </button>
+            <button id="SectionsGameDumperGDumper" onclick="LoadGDumper()"> Game Dumper </button>
+            <button id="SectionsGameDumperUDumper" onclick="LoadUDumper()"> Update Dumper </button>
         </div>
-        <div id=Sections_Recovery>
-            <h1 style='font-size:16px;margin-bottom:1px;'>Recovery</h1>
-            <button id=Sections_Recovery_DBBackup onclick=LoadDBBackup()> Database Backup </button>
-            <button id=Sections_Recovery_DBRestore onclick=LoadDBRestore()> Database Restore </button>
+        <div id="SectionsRecovery">
+            <h3 id="SectionsRecoveryHeader">Recovery</h3>
+            <button id="SectionsRecoveryDBBackup" onclick="LoadDBBackup()"> Database Backup </button>
+            <button id="SectionsRecoveryDBRestore" onclick="LoadDBRestore()"> Database Restore </button>
             <br />
-            <button id=Sections_Recovery_AvatarBackup onclick=LoadAvatarBackup()> Avatar Backup </button>
-            <button id=Sections_Recovery_AvatarRestore onclick=LoadAvatarRestore()> Avatar Restore </button>
+            <button id="SectionsRecoveryAvatarBackup" onclick="LoadAvatarBackup()"> Avatar Backup </button>
+            <button id="SectionsRecoveryAvatarRestore" onclick="LoadAvatarRestore()"> Avatar Restore </button>
         </div>
-        <div id=Sections_Settings>
-            <h1 style='font-size:16px;margin-bottom:1px;margin-top:30px;'>Settings</h1>
-            <button id=Sections_Settings_UpdatesDisabler onclick=LoadUpdatesDisabler()> Updates Disabler </button>
-            <button id=Sections_Settings_UpdatesEnabler onclick=LoadUpdatesEnabler()> Updates Enabler </button>
+        <div id="SectionsSettings">
+            <h4 id="SectionsSettingsHeader">Settings</h4>
+            <button id="SectionsSettingsUpdatesDisabler" onclick="LoadUpdatesDisabler()"> Updates Disabler </button>
+            <button id="SectionsSettingsUpdatesEnabler" onclick="LoadUpdatesEnabler()"> Updates Enabler </button>
             <br />
-            <button id=Sections_Settings_HistoryBlocker onclick=LoadHistoryBlocker()> History Blocker </button>
+            <button id="SectionsSettingsHistoryBlocker" onclick="LoadHistoryBlocker()"> History Blocker </button>
             <br />
-            <button id=Sections_Settings_FanThreshold onclick=LoadFanThreshold()> Set Fan Threshold </button><select id="FanTempSelector"></select>&#176;C
+            <button id="SectionsSettingsFanThreshold" onclick="LoadFanThreshold()"> Set Fan Threshold </button>
+            <select id="SectionsSettingsFanTempSelector"></select><sup>&#176;C</sup>
         </div>
-        <div id=Sections_Credits style=" position:fixed; left:0; bottom:-8px; width:100%; font-size:16px;">
-            <hr>By mtnjustme, based on Leeful's v10<hr>
+        <div id="SectionsCredits" style="position:fixed; left:0; bottom:0px; width:100%; font-size:16px; margin-top: 10px; margin-bottom: 10px;">
+            <hr>
+            By SpecialFood, based on Leeful's v10
+            <hr>
         </div>
     </div>
     <script>
@@ -139,14 +194,14 @@
 
             CachePercent = Math.round(e.loaded / e.total * 100);
 
-            Status.innerHTML = "Installing Cache: " + CachePercent + "%";
+            Status.innerHTML = "Installing Cache: " + CachePercent.toString() + "%";
         }
 
         function CacheInstalledEvent() {
+            CacheInstalled = true;
+
             if (CacheInstalling == true)
                 CacheInstalling = false;
-
-            CacheInstalled = true;
 
             Status.innerHTML = "Cache Installed";
 
@@ -169,10 +224,10 @@
     <script>
         // Everything regarding the FanTempSelector
 
-        function SetFanTempSelectorOptions() {
+        function ApplyFanTempSelectorOptions() {
             for (FanTempSelectorOptionIndex = FanTempMin; FanTempSelectorOptionIndex <= FanTempMax; FanTempSelectorOptionIndex++) {
                 FanTempSelectorOption = document.createElement("OPTION");
-                FanTempSelectorOption.text = FanTempSelectorOptionIndex;
+                FanTempSelectorOption.text = FanTempSelectorOptionIndex.toString();
                 FanTempSelectorOption.value = FanTempSelectorOptionIndex;
 
                 FanTempSelectorOptions.add(FanTempSelectorOption);
@@ -185,7 +240,7 @@
         function RunLoader(loader, delay) {
             SectionsLock();
 
-            setTimeout(loader, delay)
+            setTimeout(loader, delay);
         }
 
         function BLLA() { RunLoader(bl_loader, 150); }
@@ -351,7 +406,7 @@
         }
 
         function LoadFanThreshold() {//by Leeful
-            FT = FanTempSelector.value;
+            FT = SectionsSettingsFanTempSelector.value;
 
             PayloadName = "Fan Threshold";
             PayloadPath = "payloads/FanThreshold.bin";
@@ -377,14 +432,14 @@
 
             FanTempMax = 79;
             FanTempMin = 40;
-            FanTempSelectorOptions = FanTempSelector.options;
+            FanTempSelectorOptions = SectionsSettingsFanTempSelector.options;
 
             FWA = 9;
             FWB = 99;
 
-            SetFanTempSelectorOptions();
+            ApplyFanTempSelectorOptions();
 
-            FanTempSelector.value = 79;
+            SectionsSettingsFanTempSelector.value = 79;
 
             SectionsLock();
 
@@ -398,7 +453,7 @@
     </script>
     <!--
         From the scripts below the ones that need editting are:
-        jailbreak/common/malloc.js, jailbreak/common/rop.js, jailbreak/common/syscalls.js, jailbreak/common/syscalls2.js
+        jailbreak/common/helpers.js, jailbreak/common/malloc.js, jailbreak/common/rop.js, jailbreak/common/syscalls.js, jailbreak/common/syscalls2.js
         , jailbreak/c-code.js
         , loaders/BL.js (bin loader), loaders/JB.js (jailbreak), loaders/JC.js (jailbreak common), loaders/PL.js (payload), loaders/WE.js (webkit exploit)
         , mira/c-code.js, mira/mira.js

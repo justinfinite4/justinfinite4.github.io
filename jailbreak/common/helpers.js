@@ -1,3 +1,5 @@
+// change "(new Number(x))" to "Number(x)"
+
 function i48_put(x, a)
 {
     a[4] = x | 0;
@@ -89,5 +91,5 @@ function write_ptr_at(p, d)
 
 function hex(x)
 {
-    return (new Number(x)).toString(16);
+    return Number(x).toString(16);
 }

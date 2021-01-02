@@ -38,13 +38,15 @@ function pl_loader() {
             SourceXMLHttpRequest.onreadystatechange = function () {
                 if (SourceXMLHttpRequest.readyState == 4) {
                     var Payload;
-                    var PayloadTemp = new Uint8Array(SourceXMLHttpRequest.response.byteLength);
+                    var PayloadTemp;
 
+                    window.mira_blob_2_len = SourceXMLHttpRequest.response.byteLength;
+                    window.mira_blob_2 = malloc(window.mira_blob_2_len);
+
+                    PayloadTemp = new Uint8Array(mira_blob_2_len);
                     PayloadTemp.set(new Uint8Array(SourceXMLHttpRequest.response), 0);
                     Payload = new Uint32Array(PayloadTemp);
 
-                    window.mira_blob_2_len = "0x" + SourceXMLHttpRequest.response.byteLength.toString(16);
-                    window.mira_blob_2 = malloc(window.mira_blob_2_len);
                     write_mem(window.mira_blob_2, Payload);
 
                     //mira c-code

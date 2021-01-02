@@ -23,7 +23,7 @@ function we_loader() {
 
     Status.innerHTML = LoadingText;
 
-    //webkit's exploit loader
+    //webkit exploit loader
     webex_loader();
 
     setTimeout(we_loaded, 150);

@@ -1,8 +1,5 @@
 // Insert all the variables and the commands at top level into the "jailbreak_helpers_loader" function
 // change "(new Number(x))" to "Number(x)"
-// add the function "print(msg){}"
-
-function print(msg) { }
 
 function i48_put(x, a)
 {

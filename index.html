@@ -5,14 +5,17 @@
         div {
             text-align: center
         }
+
         hr {
             margin-top: 4px;
             margin-bottom: 4px;
         }
+
         br {
             margin-top: 4px;
             margin-bottom: 4px;
         }
+
         button {
             font-size: 14px;
             margin-top: 4px;
@@ -21,6 +24,7 @@
             margin-left: 1px;
             height: 23px;
         }
+
         select {
             font-size: 14px;
             margin-top: 4px;
@@ -29,6 +33,7 @@
             margin-left: 1px;
             height: 23px;
         }
+
         sup {
             font-size: 10px;
             margin-top: 4px;
@@ -42,16 +47,19 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
         h2 {
             font-size: 22px;
             margin-top: 9px;
             margin-bottom: 9px;
         }
+
         h3 {
             font-size: 18px;
             margin-top: 7px;
             margin-bottom: 7px;
         }
+
         h4 {
             font-size: 18px;
             margin-top: 20px;
@@ -227,7 +235,7 @@
 
         function CacheLoadedEvent() {
             if (CacheInstalling == false && CacheInstalled == false)
-                if (window.applicationCache.status == 1) {
+                if (window.applicationCache.status == 1) {// takes too long to get there might remove in the future
                     CacheLoaded = true;
 
                     Status.innerHTML = "Cache Loaded";
@@ -235,7 +243,7 @@
                     SectionsUnlock();
                 }
                 else
-                    setTimeout(CacheLoadedEvent, 150);
+                    setTimeout(CacheLoadedEvent, 300);
         }
     </script>
     <script>
@@ -260,15 +268,15 @@
             setTimeout(loader, delay);
         }
 
-        function BLLA() { RunLoader(bl_loader, 150); }
+        function BLLA() { RunLoader(bl_loader, 200); }
         function BLLB() { RunLoader(bl_loader, 500); }
-        function JBLA() { RunLoader(jb_loader, 150); }
+        function JBLA() { RunLoader(jb_loader, 200); }
         function JBLB() { RunLoader(jb_loader, 500); }
-        function JCLA() { RunLoader(jc_loader, 150); }
+        function JCLA() { RunLoader(jc_loader, 200); }
         function JCLB() { RunLoader(jc_loader, 500); }
-        function PLLA() { RunLoader(pl_loader, 150); }
+        function PLLA() { RunLoader(pl_loader, 200); }
         function PLLB() { RunLoader(pl_loader, 500); }
-        function WELA() { RunLoader(we_loader, 150); }
+        function WELA() { RunLoader(we_loader, 200); }
         function WELB() { RunLoader(we_loader, 500); }
 
         function LoadWebkitExploit() {
@@ -461,7 +469,7 @@
             window.applicationCache.addEventListener("progress", CacheInstallingEvent, false);
             window.applicationCache.oncached = function (e) { setTimeout(CacheInstalledEvent, 500); };
 
-            window.onload = function (e) { setTimeout(CacheLoadedEvent, 300); };
+            window.onload = function (e) { setTimeout(CacheLoadedEvent, 500); };
         }
 
         main();

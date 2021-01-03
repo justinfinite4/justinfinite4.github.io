@@ -26,5 +26,5 @@ function we_loader() {
     //webkit exploit loader
     webex_loader();
 
-    //setTimeout(we_loaded, 150); webex_loader will call for we_loaded
+    //setTimeout(we_loaded, 200); webex_loader will call for we_loaded
 }

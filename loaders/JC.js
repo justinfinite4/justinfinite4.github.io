@@ -38,5 +38,5 @@ function jc_loader() {
     //jailbreak syscalls2 loader
     jailbreak_syscalls_b_loader();
 
-    setTimeout(jc_loaded, 150);
+    setTimeout(jc_loaded, 200);
 }
